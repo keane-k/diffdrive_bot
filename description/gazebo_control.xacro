@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <!-- DiffDrive plugin for GazeboSim, not for Gazebo Classic  -->
+    <gazebo>
+        <plugin name="gz::sim::systems::DiffDrive" filename="gz-sim-diff-drive-system">
+        
+            <!-- Wheel Information -->
+            <!-- Following same naming when building wheel joints -->
+            <left_joint>left_wheel_joint</left_joint>
+            <right_joint>right_wheel_joint</right_joint>
+
+            <!-- Kinematics -->
+            <!-- Specify wheel separation from their centerpoint  -->
+            <wheel_separation>0.35</wheel_separation>
+            <!-- Specify wheel radius, Gazebo Classic uses wheel diamater instead -->
+            <wheel_radius>0.05</wheel_radius>
+
+
+            <!-- Limits -->
+            <!-- <max_wheel_torque>200</max_wheel_torque> -->
+            <max_linear_acceleration>0.033</max_linear_acceleration>
+
+
+            <!-- Input -->
+            <!-- Rmbr to update gz_bridge for this plugin -->
+            <topic>cmd_vel</topic>
+
+
+            <!-- Output -->
+            <!-- Rmbr to update gz_bridge for odom plugin -->
+            <frame_id>odom</frame_id>
+            <child_frame_id>base_link</child_frame_id>
+            <odom_topic>odom</odom_topic>
+            <odom_publisher_frequency>30</odom_publisher_frequency>
+
+            <!-- Rmbr to update gz_bridge for tf plugin -->
+            <tf_topic>/tf</tf_topic>
+
+        </plugin>
+    
+        <!-- JointStatePublisher plugin from GazeboSim, rmbr to update gz_bridge for this plugin -->
+        <!-- Tag left_wheel_joint and right_wheel_joint -->
+        <plugin filename="gz-sim-joint-state-publisher-system"
+            name="gz::sim::systems::JointStatePublisher">
+            <topic>joint_states</topic>
+            <joint_name>left_wheel_joint</joint_name>
+            <joint_name>right_wheel_joint</joint_name>
+        </plugin>
+
+
+    </gazebo>
+
+</robot>

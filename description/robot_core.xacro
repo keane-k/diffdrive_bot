@@ -42,6 +42,11 @@
         </xacro:inertial_box>
     </link>
 
+    <!-- Should Gazebo be mising colors, add the following lines under each link tag -->
+    <!-- <gazebo reference="chassis">
+        <material>Gazebo/White</material>
+    </gazebo> -->
+
 
     <!-- LEFT WHEEL LINK -->
 
@@ -130,7 +135,11 @@
         </xacro:inertial_sphere>
     </link>
 
-
+    <!-- Configure friction coefficients mu1 and mu2, set to either zero or small number at your choosing -->
+    <gazebo reference="caster_wheel">
+        <mu1 value="0.001"/>
+        <mu2 value="0.001"/>
+    </gazebo>
 
 
 </robot>
