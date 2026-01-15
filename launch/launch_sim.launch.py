@@ -4,6 +4,7 @@ from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
+from launch.actions import SetEnvironmentVariable
 
 from launch_ros.actions import Node
 import xacro
@@ -14,9 +15,18 @@ def generate_launch_description():
     package_name = 'diffdrive_bot'
     file_subpath = 'description/robot.urdf.xacro'
 
+
     # Use xacro to process the file [Not needed, rsp.launch.py already contains a similar function]
     # xacro_file = os.path.join(get_package_share_directory(package_name),file_subpath)
     # robot_description_raw = xacro.process_file(xacro_file).toxml()
+
+
+
+    # Setting environment variable, w/o this, LiDAR has trouble working in Gazebo and RViz
+    set_libgl_software = SetEnvironmentVariable(
+        name="LIBGL_ALWAYS_SOFTWARE",
+        value="1"
+    )
 
     # Defining world
     default_world = os.path.join(
@@ -74,6 +84,7 @@ def generate_launch_description():
 
     # Run the nodes
     return LaunchDescription([
+        set_libgl_software,
         world_arg,
         rsp,
         gazebo,
