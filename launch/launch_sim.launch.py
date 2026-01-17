@@ -23,6 +23,7 @@ def generate_launch_description():
 
 
     # Setting environment variable, w/o this, LiDAR has trouble working in Gazebo and RViz
+    # Best utilized if NVidia GPU is absent, do note this will slow down the simulation
     set_libgl_software = SetEnvironmentVariable(
         name="LIBGL_ALWAYS_SOFTWARE",
         value="1"
@@ -82,6 +83,13 @@ def generate_launch_description():
     )
 
 
+    # Create the bridge node for gz_image_bridge
+    ros_gz_image_bridge = Node(
+        package="ros_gz_image",
+        executable="image_bridge",
+        arguments=["/camera/image_raw"]
+    )
+
     # Run the nodes
     return LaunchDescription([
         set_libgl_software,
@@ -89,5 +97,6 @@ def generate_launch_description():
         rsp,
         gazebo,
         spawn_entity,
-        ros_gz_bridge
+        ros_gz_bridge,
+        ros_gz_image_bridge
     ])
