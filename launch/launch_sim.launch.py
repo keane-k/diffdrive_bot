@@ -90,6 +90,15 @@ def generate_launch_description():
         arguments=["/camera/image_raw"]
     )
 
+
+    # Create the bridge node for gz_image_bridge (for Depth Image)
+    ros_gz_depth_image_bridge = Node(
+        package="ros_gz_image",
+        executable="image_bridge",
+        arguments=["/depth_camera/image_raw"]
+    )
+
+
     # Run the nodes
     return LaunchDescription([
         set_libgl_software,
@@ -98,5 +107,7 @@ def generate_launch_description():
         gazebo,
         spawn_entity,
         ros_gz_bridge,
-        ros_gz_image_bridge
+        ros_gz_image_bridge,
+        ros_gz_depth_image_bridge,
+
     ])
