@@ -28,20 +28,19 @@
   gz_type_name: "gz.msgs.Pose_V"
   direction: GZ_TO_ROS
 
-
-# # gz topic subscribed to by DiffDrive plugin
-# - ros_topic_name: "diff_cont/cmd_vel_unstamped"
-#   gz_topic_name: "cmd_vel"
-#   ros_type_name: "geometry_msgs/msg/Twist"
-#   gz_type_name: "gz.msgs.Twist"
-#   direction: ROS_TO_GZ
-
-# gz topic subscribed to by DiffDrive plugin
+# gz topic subscribed to by DiffDrive plugin (gazebo_control)
 - ros_topic_name: "cmd_vel"
   gz_topic_name: "cmd_vel"
   ros_type_name: "geometry_msgs/msg/Twist"
   gz_type_name: "gz.msgs.Twist"
   direction: ROS_TO_GZ
+
+# # gz topic subscribed to by DiffDrive plugin (ros2_control - not in use, refer to teleop launch script)
+# - ros_topic_name: "diff_cont/cmd_vel"
+#   gz_topic_name: "cmd_vel"
+#   ros_type_name: "geometry_msgs/msg/TwistStamped"
+#   gz_type_name: "gz.msgs.Twist"
+#   direction: ROS_TO_GZ  
 
 # gz topic published by JointState plugin
 - ros_topic_name: "joint_states"
@@ -73,13 +72,13 @@
 
 
 # # gz topic published by Sensors plugin (Depth Camera)
-# - ros_topic_name: "camera/depth_image"
-#   gz_topic_name: "camera/depth_image"
+# - ros_topic_name: "depth_camera/depth_image"
+#   gz_topic_name: "depth_camera/depth_image"
 #   ros_type_name: "sensor_msgs/msg/Image"
 #   gz_type_name: "gz.msgs.Image"
 #   direction: GZ_TO_ROS
 
-# # gz topic published by Sensors plugin (Depth Camera)
+# # gz topic published by Sensors plugin (if using rgbd camera, for Depth Camera)
 # - ros_topic_name: "/rgbd_camera/depth_image"
 #   gz_topic_name: "/rgbd_camera/depth_image"
 #   ros_type_name: "sensor_msgs/msg/Image"

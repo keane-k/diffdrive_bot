@@ -49,9 +49,10 @@ def generate_launch_description():
     rsp = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             get_package_share_directory(package_name),'launch','rsp.launch.py')]),
-            launch_arguments = {'use_sim_time':'true'}.items()
+            launch_arguments = {'use_sim_time':'true', 'use_ros2_control':'true'}.items()
         
     )
+
 
     # Launch Gazebo
     # Include launch file for Gazebo,  found in ros_gz_sim package
@@ -83,7 +84,7 @@ def generate_launch_description():
     )
 
 
-    # Create the bridge node for gz_image_bridge
+    # Create the bridge node for gz_image_bridge (for Normal Image)
     ros_gz_image_bridge = Node(
         package="ros_gz_image",
         executable="image_bridge",
@@ -99,6 +100,32 @@ def generate_launch_description():
     )
 
 
+    # Launch diff_drive_controller
+    diff_drive_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["diff_cont"]
+    )
+
+
+    # Launch joint_state_broadcaster
+    joint_broad_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["joint_broad"]
+    )
+
+    # Launch teleop_twist_keyboard (currently only meant for ros2_control)
+    # using terminal emulator 'xterm', you may edit if preferred 'konsole' or 'gnome-terminal'
+    # From ROS2 Jazzy onwards, ensure stamped messages is used for Twist message
+    teleop_keyboard = Node(
+        package="teleop_twist_keyboard",
+        executable="teleop_twist_keyboard",
+        prefix="xterm -e",
+        parameters=[{'stamped': True}],
+        remappings=[('/cmd_vel','/diff_cont/cmd_vel')]
+    )
+
     # Run the nodes
     return LaunchDescription([
         set_libgl_software,
@@ -109,5 +136,7 @@ def generate_launch_description():
         ros_gz_bridge,
         ros_gz_image_bridge,
         ros_gz_depth_image_bridge,
-
+        diff_drive_spawner,
+        joint_broad_spawner,
+        teleop_keyboard
     ])

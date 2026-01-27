@@ -23,18 +23,18 @@
 
 
             <!-- Input -->
-            <!-- Rmbr to update gz_bridge for this plugin -->
+            <!-- Rmbr to update gz_bridge.yaml for this plugin -->
             <topic>cmd_vel</topic>
 
 
             <!-- Output -->
-            <!-- Rmbr to update gz_bridge for odom plugin -->
+            <!-- Rmbr to update gz_bridge.yaml for odom plugin -->
             <frame_id>odom</frame_id>
             <child_frame_id>base_link</child_frame_id>
             <odom_topic>odom</odom_topic>
             <odom_publisher_frequency>30</odom_publisher_frequency>
 
-            <!-- Rmbr to update gz_bridge for tf plugin -->
+            <!-- Rmbr to update gz_bridge.yaml for tf plugin -->
             <tf_topic>/tf</tf_topic>
 
         </plugin>
