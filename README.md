@@ -3,18 +3,19 @@ This project documents my ongoing effort to learn and understand mobile robot si
 The repository is intended as a beginner-friendly reference, capturing both working configurations and the lessons learned while setting up robot descriptions, simulation workflows and sensor integration in ROS2. 
 
 >TL;DR\
-This project focuses on simulating a simple differential-drive robot using ROS 2, GazeboSim & RViz. It is intentionally beginner-oriented and serves as a living document of my learning process, experiments, and discoveries while working with modern ROS 2 simulation tools.
+This project focuses on simulating a simple differential drive robot using ROS2, GazeboSim & RViz. It is beginner-oriented, serving as a living document of my learning and thought process, as well as discoveries while working with ROS2 simulation tools.
 ## System Requirements
 - Ubuntu: Ubuntu Noble 24.04.3 LTS
 - ROS2: Kilted
 - Gazebo: Ionic
   
 ## Overview
-Control Plugins:
-- DiffDrive
-- ros2_control
+### Control Plugins: 
+User may toggle between gazebo_control or ros2_control via `use_ros2_control` found in `launch_sim.launch.py`
+- Gazebo DiffDrive plugin (gazebo_control) -----> Set `use_ros2_control` to `false`
+- ros2_control               -----> Set `use_ros2_control` to `true`
 
-Simulated Sensors:
+### Simulated Sensors:
 - LiDAR (Light Detection and Ranging)
 - Camera
 - Depth Camera (w/ PointCloud visualization)
