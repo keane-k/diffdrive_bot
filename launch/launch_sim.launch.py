@@ -46,11 +46,11 @@ def generate_launch_description():
 
     # Launch robot_state_publisher using our own prepared launch file 'rsp.launch.py' (another method is to simply run the node)
     # Ensure sim time is enabled
+    # Via use_ros2_control, toggle between gazebo_control (true) or ros2_control (false) 
     rsp = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             get_package_share_directory(package_name),'launch','rsp.launch.py')]),
             launch_arguments = {'use_sim_time':'true', 'use_ros2_control':'true'}.items()
-        
     )
 
 
@@ -118,13 +118,13 @@ def generate_launch_description():
     # Launch teleop_twist_keyboard (currently only meant for ros2_control)
     # using terminal emulator 'xterm', you may edit if preferred 'konsole' or 'gnome-terminal'
     # From ROS2 Jazzy onwards, ensure stamped messages is used for Twist message
-    teleop_keyboard = Node(
-        package="teleop_twist_keyboard",
-        executable="teleop_twist_keyboard",
-        prefix="xterm -e",
-        parameters=[{'stamped': True}],
-        remappings=[('/cmd_vel','/diff_cont/cmd_vel')]
-    )
+    # teleop_keyboard = Node(
+    #     package="teleop_twist_keyboard",
+    #     executable="teleop_twist_keyboard",
+    #     prefix="xterm -e",
+    #     parameters=[{'stamped': True}],
+    #     remappings=[('/cmd_vel','/diff_cont/cmd_vel')]
+    # )
 
     # Run the nodes
     return LaunchDescription([
@@ -138,5 +138,5 @@ def generate_launch_description():
         ros_gz_depth_image_bridge,
         diff_drive_spawner,
         joint_broad_spawner,
-        teleop_keyboard
+        
     ])
