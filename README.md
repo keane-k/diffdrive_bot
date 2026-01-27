@@ -12,7 +12,7 @@ This project focuses on simulating a simple differential-drive robot using ROS 2
 ## Overview
 Control Plugins:
 - DiffDrive
-- ros2_control>>>**[Work in Progress]**
+- ros2_control
 
 Simulated Sensors:
 - LiDAR (Light Detection and Ranging)
