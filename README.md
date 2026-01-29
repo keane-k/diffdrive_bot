@@ -14,6 +14,8 @@ This project focuses on simulating a simple differential drive robot using ROS2,
 User may toggle between gazebo_control or ros2_control via `use_ros2_control` found in `launch_sim.launch.py`
 - Gazebo DiffDrive plugin (gazebo_control) -----> Set `use_ros2_control` to `false`
 - ros2_control               -----> Set `use_ros2_control` to `true`
+#### Using `teleop_twist_keyboard`
+<img width="477" height="342" alt="image" src="https://github.com/user-attachments/assets/1813da91-7bab-401a-a580-53b2af2fdf0a" />
 
 ### Simulated Sensors:
 #### LiDAR (Light Detection and Ranging)
