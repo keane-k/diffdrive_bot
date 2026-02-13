@@ -115,6 +115,7 @@ def generate_launch_description():
         arguments=["joint_broad"]
     )
 
+
     # Launch teleop_twist_keyboard (this spawner is currently only meant for ros2_control)
     # using terminal emulator 'xterm', you may edit if preferred 'konsole' or 'gnome-terminal'
     # From ROS2 Jazzy onwards, ensure stamped messages is used for Twist message
@@ -125,6 +126,7 @@ def generate_launch_description():
         parameters=[{'stamped': True}],
         remappings=[('/cmd_vel','/diff_cont/cmd_vel')]
     )
+
 
     # Run the nodes
     return LaunchDescription([
@@ -138,6 +140,7 @@ def generate_launch_description():
         ros_gz_depth_image_bridge,
         diff_drive_spawner,
         joint_broad_spawner,
-        teleop_keyboard
+        teleop_keyboard,
+
         
     ])

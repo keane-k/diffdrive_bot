@@ -34,6 +34,14 @@ def generate_launch_description():
     )
 
 
+    twist_stamper = Node(
+        package='twist_stamper',
+        executable='twist_stamper',
+        parameters=[{'use_sim_time': use_sim_time}],
+        remappings=[('/cmd_vel_in','/cmd_vel'),
+            ('/cmd_vel_out','/diff_cont/cmd_vel')]
+        )
+
     # Launch!
     return LaunchDescription([
         DeclareLaunchArgument(
@@ -44,6 +52,6 @@ def generate_launch_description():
             'use_ros2_control',
             default_value='true',
             description='Use ros2_control if true'),
-
-        node_robot_state_publisher
+        node_robot_state_publisher,
+        twist_stamper
     ])
