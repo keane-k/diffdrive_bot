@@ -23,7 +23,7 @@ def generate_launch_description():
         executable='ekf_node',
         name='ekf_node',
         output='screen',
-        parameters=[os.path.join(this_pkg, 'config' 'ekf.yaml'), {'use_sim_time': True}],
+        parameters=[os.path.join(this_pkg,'config','ekf.yaml'), {'use_sim_time': True}],
     )
 
     nav_launch = IncludeLaunchDescription(

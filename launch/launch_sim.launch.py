@@ -21,7 +21,6 @@ def generate_launch_description():
     # robot_description_raw = xacro.process_file(xacro_file).toxml()
 
 
-
     # Setting environment variable, w/o this, LiDAR has trouble working in Gazebo and RViz
     # Best utilized if NVidia GPU is absent, do note this will slow down the simulation
     set_libgl_software = SetEnvironmentVariable(
