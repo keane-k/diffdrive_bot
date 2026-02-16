@@ -57,7 +57,7 @@ Assigns a cost to different areas of the environment, currently based on a stati
   <img width="896" height="493" alt="image" src="https://github.com/user-attachments/assets/9b03ed3c-28e6-4fbe-b0cc-24832a781440" />
 </p>
 
->At the time of this writing, author is having issues with using Nav2 for autonomous path planning. Terminal output seems to end on `Creating bond timer...`, hinting towards `nav2_stack` is not fully initializing. Concerns could be attributed to demanding computational power that a Virtual Machine lacks, root cause of error remains unknown. 
+>At the time of this writing, author is working on using Nav2 for autonomous path planning. Terminal output seems to end on `Creating bond timer...`, hinting towards `nav2_stack` is not fully initializing. Concerns could be attributed to demanding computational power that a Virtual Machine lacks, root cause of error remains unknown. 
 
 ---
 
