@@ -57,19 +57,18 @@ Assigns a cost to different areas of the environment, currently based on a stati
   <img width="896" height="493" alt="image" src="https://github.com/user-attachments/assets/9b03ed3c-28e6-4fbe-b0cc-24832a781440" />
 </p>
 
->At the time of this writing, author is working on using Nav2 for autonomous path planning. Terminal output seems to end on `Creating bond timer...`, hinting towards `nav2_stack` is not fully initializing. Concerns could be attributed to demanding computational power that a Virtual Machine lacks, root cause of error remains unknown. 
+>At the time of this writing, author is working on using Nav2 for autonomous path planning. Terminal output seems to end on `Creating bond timer...`, hinting towards `nav2_stack` not fully initializing. A concern could be attributed to demanding computational power that a Virtual Machine might struggle with. Root cause of issue pending further investigation. 
 
 ---
 
 ## Future Works
-- Teleop (Using gamepad controllers/joysticks)
-- Adv. Teleop (Using phone/tablet)
-  > Might not be implemented if a real robot is required
-- Object Tracking using OpenCV
 - SLAM using slam_toolbox
   > Implement AMCL for localization
 - Autonomous Navigation with Nav2
 
+## Future Works (Possibly)
+- Teleop (Using gamepad controllers/joysticks)
+- Object Tracking using OpenCV
 
 ## Credits
 This project is inspired by the work of joshnewans and his Articulated Robotics blog and tutorial. The code in this repository is written and maintained for ROS 2 Kilted and Gazebo Ionic.
