@@ -3,12 +3,19 @@
 
 
     <!-- Create camera_joint for camera sensor, we will base camera_joint_optical off this joint and reorient as needed -->
-    <joint name="camera_joint" type="fixed">
+    <!-- Select either (1 - For Normal Usage) or (2 - For Ball Tracking, modified <rpy>)  -->
+    <!-- 1. Normal Camera  -->
+    <!-- <joint name="camera_joint" type="fixed">
         <parent link="chassis"/>
         <child link="camera_link"/>
         <origin xyz="0.305 0 0.08" rpy="0 0 0"/>
+    </joint> -->
+    <!-- 2. Ball Tracking Camera, adjusted pitch to 0.18 radians, camera pointed downwards towards floor -->
+    <joint name="camera_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="camera_link"/>
+        <origin xyz="0.305 0 0.08" rpy="0 0.18 0"/>
     </joint>
-
 
    <!-- Create camera_link -->
    <!-- Collision absent for simplicity -->
@@ -38,7 +45,7 @@
 
 
     <!-- Add Gazebo tag to original camera_link
-        (but in plugin we reference the optical frame so that ROS can orient things correctly) -->
+        (but in plugin <gz_frame_id> we reference the optical frame so that ROS can orient things correctly) -->
     <gazebo reference='camera_link'>
         <sensor name='camera' type='camera'>
             <pose> 0 0 0 0 0 0 </pose>

@@ -29,10 +29,14 @@ def generate_launch_description():
     )
 
     # Defining world
+    # Current worlds available:
+    # 1. empty.world - literally just an empty world
+    # 2. obstacles.world - 4 traffic cones acting as obstacles
+    # 3. balltracking.world - includes a RoboCup SPL Ball for ball tracking tests
     default_world = os.path.join(
         get_package_share_directory(package_name),
         'worlds',
-        'obstacles.world'
+        'balltracking.world'
     )
 
     world = LaunchConfiguration('world')
@@ -68,7 +72,7 @@ def generate_launch_description():
                                    '-name','diffdrive_bot',
                                    '-z','0.1'],
                         output='screen')
-    
+
 
     # Create the bridge node for gz_bridge
     bridge_params = os.path.join(get_package_share_directory(package_name),'config','gz_bridge.yaml')
@@ -127,6 +131,17 @@ def generate_launch_description():
     )
 
 
+    # Added for Object Tracking w/ OpenCV
+    # For Ball Tracking
+    twist_mux_params = os.path.join(get_package_share_directory(package_name),'config','twist_mux.yaml')
+    twist_mux = Node(
+        package="twist_mux",
+        executable="twist_mux",
+        parameters=[twist_mux_params, {'use_sim_time': True}],
+        remappings=[('/cmd_vel_out','/diff_cont/cmd_vel')] # remappings may need to be changed
+    )
+
+
     # Run the nodes
     return LaunchDescription([
         set_libgl_software,
@@ -140,6 +155,7 @@ def generate_launch_description():
         diff_drive_spawner,
         joint_broad_spawner,
         teleop_keyboard,
+        twist_mux,
 
         
     ])
