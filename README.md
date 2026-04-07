@@ -61,6 +61,49 @@ Assigns a cost to different areas of the environment, currently based on a stati
 
 ---
 
+## Ball Tracking using OpenCV
+### Tuning of Detection
+Ball is an asset (RoboCup SPL Ball) provided by OpenRobotics. Tuning parameters can be found in the params file `ball_tracker_params.yaml`.
+<p align='center'>  
+  <img width="771" height="490" alt="image" src="https://github.com/user-attachments/assets/be18b041-5a42-4e6a-8785-ac3efd2ac6a7" />
+</p>
+
+### Ball Tracking
+Using trigonometry, a 3D position-estimate of the ball can be calculated and visualised in RViz. 
+<p align='center'>  
+  <img width="860" height="636" alt="image" src="https://github.com/user-attachments/assets/f7f14b29-8cb9-4ea7-b60b-2a6e74a850eb" />
+</p>
+
+## Usage
+### Setup
+#### Step 1. Build the Workspace
+```bash
+cd ~/diffdrive_ws
+colcon build --symlink-install
+```
+#### Step 2. Source the Workspace
+```bash
+source install/setup.bash
+```
+### Launch Gazebo and RViz2
+#### Step 1. Launch Gazebo, spawning Robot and simulating World
+In a new terminal:
+```bash
+ros2 launch diffdrive_bot launch_sim.launch.py
+```
+#### Step 2. Launch RViz2 with a specific configuration tailored for ball tracking feature
+In another terminal:
+```bash
+rviz2 -d src/diffdrive_bot/config/balltracking.rviz
+```
+### Running Ball Tracking Feature
+#### Step 1. To enable ball tracking, launch the following launch file
+In a new terminal:
+```bash
+ros2 launch diffdrive_bot ball_tracker.launch.py sim_mode:=true
+```
+---
+
 ## Future Works
 - SLAM using slam_toolbox
   > Implement AMCL for localization
@@ -68,7 +111,6 @@ Assigns a cost to different areas of the environment, currently based on a stati
 
 ## Future Works (Possibly)
 - Teleop (Using gamepad controllers/joysticks)
-- Object Tracking using OpenCV
 
 ## Credits
 This project is inspired by the work of joshnewans and his Articulated Robotics blog and tutorial. The code in this repository is written and maintained for ROS 2 Kilted and Gazebo Ionic.
