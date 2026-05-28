@@ -104,13 +104,6 @@ ros2 launch diffdrive_bot ball_tracker.launch.py sim_mode:=true
 ```
 ---
 
-## Future Works
-- SLAM using slam_toolbox
-  > Implement AMCL for localization
-- Autonomous Navigation with Nav2
-
-## Future Works (Possibly)
-- Teleop (Using gamepad controllers/joysticks)
 
 ## Credits
 This project is inspired by the work of joshnewans and his Articulated Robotics blog and tutorial. The code in this repository is written and maintained for ROS 2 Kilted and Gazebo Ionic.
